@@ -13,17 +13,17 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        SequenceGenerator<Integer> sequenceGenerator = new StandardSequenceGeneratorGenerator();
-        List<Integer> numbers = sequenceGenerator.generate(20);
-
+        int n = 20;
         List<Rule> rules = List.of(
                 new FizzBuzzRule(),
 //                new FizzOrBuzzRule(),
                 new FizzRule(),
                 new BuzzRule()
         );
-        Executor standardRuleExecutor = new StandardRuleExecutor(rules);
 
+        SequenceGenerator<Integer> sequenceGenerator = new StandardSequenceGeneratorGenerator();
+        List<Integer> numbers = sequenceGenerator.generate(n);
+        Executor standardRuleExecutor = new StandardRuleExecutor(rules);
         OutputHandler outputHandler = new ConsoleOutputHandler();
 
         List<String> outputs = standardRuleExecutor.execute(numbers);
