@@ -2,32 +2,26 @@ package org.yaremax;
 
 import org.yaremax.rule.BuzzRule;
 import org.yaremax.rule.FizzRule;
+import org.yaremax.rule.Rule;
+import org.yaremax.sequence.SequenceGenerator;
+import org.yaremax.sequence.StandardSequenceGeneratorGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    static FizzRule fizzRule = new FizzRule();
-    static BuzzRule buzzRule = new BuzzRule();
 
     public static void main(String[] args) {
-        System.out.println(func(20));
+        SequenceGenerator<Integer> sequenceGenerator = new StandardSequenceGeneratorGenerator();
+        FizzBuzzExecutor fizzBuzzExecutor = new FizzBuzzExecutor();
+
+        List<Integer> numbers = sequenceGenerator.generate(20);
+        List<Rule> rules = List.of(
+                new FizzRule(),
+                new BuzzRule()
+        );
+
+        System.out.println(fizzBuzzExecutor.execute(numbers, rules));
     }
 
-    public static List<String> func(int n) {
-        List<String> arr = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 1; i <= n; i++) {
-            sb.delete(0, sb.length());
-
-            sb.append(fizzRule.apply(i));
-            sb.append(buzzRule.apply(i));
-
-            if (sb.isEmpty()) sb.append(i);
-
-            arr.add(sb.toString());
-        }
-        return arr;
-    }
 }
