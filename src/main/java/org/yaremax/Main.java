@@ -21,8 +21,8 @@ public class Main {
         for (int i = 1; i <= n; i++) {
             sb.delete(0, sb.length());
 
-            sb.append(fizzRule.doRule(i));
-            sb.append(buzzRule.doRule(i));
+            sb.append(fizzRule.apply(i));
+            sb.append(buzzRule.apply(i));
 
             if (sb.isEmpty()) sb.append(i);
 
