@@ -14,13 +14,14 @@ public class StandardRuleExecutor implements Executor {
     public List<String> execute(List<Integer> numbers) {
         return numbers.stream()
                 .map(number -> {
-                    StringBuilder output = new StringBuilder();
+                    String output = "";
 
                     for (Rule rule : rules) {
-                        output.append(rule.apply(number));
+                        output = rule.apply(number);
+                        if (!output.isEmpty()) break;
                     }
 
-                    return output.isEmpty() ? String.valueOf(number) : output.toString();
+                    return output.isEmpty() ? String.valueOf(number) : output;
                 }
         ).toList();
     }
