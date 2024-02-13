@@ -1,5 +1,7 @@
 package org.yaremax;
 
+import org.yaremax.executor.Executor;
+import org.yaremax.executor.StandardRuleExecutor;
 import org.yaremax.output.ConsoleOutputHandler;
 import org.yaremax.output.OutputHandler;
 import org.yaremax.rule.BuzzRule;
@@ -15,17 +17,17 @@ public class Main {
 
     public static void main(String[] args) {
         SequenceGenerator<Integer> sequenceGenerator = new StandardSequenceGeneratorGenerator();
-        FizzBuzzExecutor fizzBuzzExecutor = new FizzBuzzExecutor();
-        OutputHandler outputHandler = new ConsoleOutputHandler();
-
-//        Input
         List<Integer> numbers = sequenceGenerator.generate(20);
+
         List<Rule> rules = List.of(
                 new FizzRule(),
                 new BuzzRule()
         );
+        Executor standardRuleExecutor = new StandardRuleExecutor(rules);
 
-        List<String> outputs = fizzBuzzExecutor.execute(numbers, rules);
+        OutputHandler outputHandler = new ConsoleOutputHandler();
+
+        List<String> outputs = standardRuleExecutor.execute(numbers);
 
         outputHandler.handleOutput(outputs);
     }

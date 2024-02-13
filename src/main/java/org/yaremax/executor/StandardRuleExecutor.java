@@ -1,11 +1,17 @@
-package org.yaremax;
+package org.yaremax.executor;
 
 import org.yaremax.rule.Rule;
 
 import java.util.List;
 
-public class FizzBuzzExecutor {
-    public List<String> execute(List<Integer> numbers, List<Rule> rules) {
+public class StandardRuleExecutor implements Executor {
+    private final List<Rule> rules;
+
+    public StandardRuleExecutor(List<Rule> rules) {
+        this.rules = rules;
+    }
+
+    public List<String> execute(List<Integer> numbers) {
         return numbers.stream()
                 .map(number -> {
                     StringBuilder output = new StringBuilder();
