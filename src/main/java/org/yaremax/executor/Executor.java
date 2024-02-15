@@ -2,6 +2,6 @@ package org.yaremax.executor;
 
 import java.util.List;
 
-public interface Executor {
-    public List<String> execute(List<Integer> numbers);
+public interface Executor<T> {
+    public List<String> execute(T t);
 }

@@ -4,7 +4,7 @@ import org.yaremax.rule.Rule;
 
 import java.util.List;
 
-public class StandardRuleExecutor implements Executor {
+public class StandardRuleExecutor implements Executor<List<Integer>> {
     private final List<Rule> rules;
 
     public StandardRuleExecutor(List<Rule> rules) {
